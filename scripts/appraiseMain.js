@@ -203,14 +203,14 @@ function createNewInputRangeForYearBlock(yearValue) {
     inputYear.setAttribute('data-id', yearValue)
 
     let spanFromLabelYear = document.createElement('span')
-    spanFromLabelYear.innerHTML = yearValue + ' new'
+    spanFromLabelYear.setAttribute('style', 'color:#cdcdcd;')
+    spanFromLabelYear.innerHTML = yearValue
 
     label.append(inputYear)
     label.append(spanFromLabelYear)
     if (document.querySelector('.appraise-car-body__year-input-radio')) {
         document.querySelector('.appraise-car-body__year-input-radio').append(label)
     }
-
 
 }
 
