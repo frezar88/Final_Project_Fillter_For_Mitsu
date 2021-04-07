@@ -15,6 +15,7 @@ import { hideNoActiveFilters } from "./hideNoActiveFilters.js";
 import { blockedFiltersByOrNew } from "./blockedFiltersByOrNew.js";
 import {} from "./appraiseMain.js";
 import { showAboutPriceBlock } from "./MoreAboutPriceBlock.js";
+//import name from 'module';
 let page = 0;
 let form = document.querySelector("form");
 let newFormData;
