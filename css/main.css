@@ -3,6 +3,7 @@
 @import "./null-style.css";
 @import "./appraise-style.css";
 @import "./currentPriceBlock.css";
+@import "./PopUpDescriptionByCar.css";
 
 /* -----------FONTS----------- */
 
@@ -387,6 +388,7 @@ margin: 0;
 .filter-list__year  .filter-list__item:nth-child(4){
 order: -2;
 margin: 0;
+
 }
 .filter-list__year  .filter-list__item:nth-child(5){
 margin-bottom: 20px;
@@ -753,6 +755,9 @@ margin-bottom: 20px;
     border-radius: 2px;
     font-size: 12px;
 }
+.car-list__item:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
 
 .car-list__img img {
     transform: scale(1.0);
@@ -765,6 +770,7 @@ margin-bottom: 20px;
     font-weight: 300;
     font-size: 20px;
     color: #222;
+
 }
 
 .car-list__title div {
@@ -772,10 +778,20 @@ margin-bottom: 20px;
     justify-content: space-between;
 }
 
+
+
 .car-list__title span {
     text-transform: uppercase;
     color: #999;
     margin-bottom: 20px;
+}
+.CarName_БУ{
+    cursor: pointer;
+    text-decoration: underline;
+    transition: .1s;
+}
+.CarName_БУ:hover{
+    color: #ff0000;
 }
 
 .car-list__features {
@@ -1288,9 +1304,7 @@ margin-bottom: 20px;
 .filter-list__model .filter-list-block{
     order: -1;
 }
-.filter-list__model.filter-list-block input{
-    
-}
+
 .trade-in__text div{
 text-decoration: underline;
 }
@@ -1302,5 +1316,3 @@ text-decoration: underline;
 .trade-in__text div{
     cursor: pointer;
 }
-
-@media(max-width:320px)

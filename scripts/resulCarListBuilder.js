@@ -1,13 +1,24 @@
+import { showPopUpDiscriptionBuCar} from './popUpDescriptionByCar.js';
+
+let carDescription = {}
 export class CarBuilder {
     carContainer;
     path;
     car;
-
+    
     constructor(car, path) {
         this.path = path;
         this.car = car;
-
+        carDescription[car.id]=car
         this.carContainer = this.createCar(this.car, this.path);
+        this.carContainer.addEventListener('click', (e) => {
+            
+            let carListItemDataTypeValue = e.currentTarget.attributes['data-type'].value
+           
+            if (e.target.className =='CarName_БУ') {
+                showPopUpDiscriptionBuCar(e, carDescription)
+            }
+        })
         this.append(path, this.carContainer);
         this.keepTrackOfTheCurrentPrice();
     }
@@ -39,7 +50,8 @@ export class CarBuilder {
         this.addTitle(
             this.car.name,
             this.car.year,
-            this.car.win ? this.car.win : ""
+            this.car.win ? this.car.win : "",
+            this.car.type
         );
         this.addFeatures(
             this.car.engine_capacity,
@@ -53,10 +65,7 @@ export class CarBuilder {
         this.addAdvansedPrice(this.car.name, this.car.price, this.car.advantage);
         this.addLocation(this.car.location ? this.car.location : "Минск");
         this.addBtnreserve(this.car.id);
-        // this.createItem1(this.car.id);
-        // this.addImg1(this.car.image);
-        // this.addNameAndYear(this.car.name, this.car.year)
-        // this.addPrice1(this.car.price)
+    
         return this.carContainer;
     }
     createItem(id, type) {
@@ -82,7 +91,7 @@ export class CarBuilder {
         };
         return this.carContainer.append(carListBlock);
     }
-    addTitle(CarName, year, win) {
+    addTitle(CarName, year, win,type) {
         return this.carContainer.appendChild(
             this.createElement({
                 elem: "div",
@@ -90,7 +99,7 @@ export class CarBuilder {
                     class: "car-list__title",
                 },
                 inner: [{
-                        elem: "h3",
+                    elem: "h3", 'attributes': { 'class': 'CarName_' + type.replace('/','')},
                         inner: CarName,
                     },
                     {
@@ -292,12 +301,12 @@ export class CarBuilder {
                 },
                 inner: [{
                     elem: "div",
-                    attributes: {},
+                    attributes: { 'class': 'adVansedPrice'},
                     inner: [{
                             elem: "img",
-                            attributes: { src: "../img/round-info-button.svg", alt: "#" },
+                        attributes: { 'class': 'adVansedPrice',src: "../img/round-info-button.svg", alt: "#" },
                         },
-                        { elem: "p", inner: "Подробнее о цене" },
+                        { elem: "p", attributes: { 'class': 'adVansedPrice' }, inner: "Подробнее о цене" },
                     ],
                 }, ],
             })
@@ -366,73 +375,5 @@ export class CarBuilder {
         } else return;
     }
 
-    // createItem1(id) {
-    //   return this.carContainer = this.createElement({
-    //     'elem': 'div',
-    //     'attributes': {
-    //       'class': 'result-item',
-    //       'data-car-id': id
-    //     }, 'inner': [{
-    //       'elem': 'div',
-    //       'attributes': {
-    //         'class': 'result-item__wrapper'
-    //       }
-    //     }]
-    //   });
-    // }
-    // addImg1(image) {
-    //   return this.carContainer.append(this.createElement({
-    //     'elem': 'div',
-    //     'attributes': {
-    //       'class': 'result-item__img'
-    //     },
-    //     'inner': [{
-    //       'elem': 'img',
-    //       'attributes': {
-    //         'src': 'http://dev.mitsubishi.by/' + image
-    //       },
-    //     }]
-    //   }))
-    // }
-    // addNameAndYear(CarName, year) {
-    //   return this.carContainer.append(this.createElement({
-    //     'elem': 'div',
-    //     'attributes': {
-    //       'class': 'result-item__name-year'
-    //     },
-    //     'inner': [{
-    //       'elem': 'span',
-    //       'attributes': { 'class': 'item__name' }, 'inner': CarName
-    //     },
-    //       {
-    //         'elem': 'span',
-    //         'attributes': { 'class': 'item__year' }, 'inner': year
-    //     }
-    //     ]
-    //   }))
-    // }
-    // addPrice1(price) {
-    //   return this.carContainer.append(this.createElement({
-    //     'elem': 'div',
-    //     'attributes': {
-    //       'class':'result-item__price'
-    //     }, 'inner': [
-    //       {
-    //         'elem': 'div', 'inner': [
-    //           { 'elem': 'span', 'attributes': { 'class': 'item__price' }, 'inner': price },
-    //           { 'elem': 'span', 'inner': 'BYN' },
-    //           { 'elem': 'img', 'attributes': { 'src':'../../../images/new-filter/img/iconI.png'}}
-    //         ]
-    //       },
-    //       {
-    //         'elem': 'div', 'inner': [
-    //           { 'elem': 'span', 'attributes': { 'class': 'item__post-price' }, 'inner': +price + 2000 },
-    //           { 'elem': 'span', 'inner': 'BYN' },
-    //           { 'elem': 'span', 'attributes': { 'class': 'item__discount' }, 'inner': [{ 'elem': 'span', 'inner': '- ' + '2000' + 'BYN' }]}
-    //         ]
-    //       }
-    //     ]
 
-    //   }))
-    // }
 }
